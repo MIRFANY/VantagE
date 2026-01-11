@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
-import OpenAI from 'openai';
+import Groq from 'groq-sdk';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
 });
 
 export async function POST(request: NextRequest) {
@@ -38,8 +38,8 @@ Please provide your analysis in the following JSON format:
 
 Provide thoughtful, insightful analysis that helps readers appreciate the beauty and depth of Urdu literature.`;
 
-    const message = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+    const message = await groq.chat.completions.create({
+      model: 'llama-3.3-70b-versatile',
       max_tokens: 2048,
       messages: [
         {
