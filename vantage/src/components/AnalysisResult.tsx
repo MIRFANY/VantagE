@@ -110,8 +110,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Summary"
         emoji="📖"
-        bgColor="bg-gradient-to-br from-blue-50/50 dark:from-blue-900/20"
-        borderColor="border-blue-200 dark:border-blue-800"
+        bgColor="bg-gradient-to-br from-blue-50/10 dark:from-blue-900/10"
+        borderColor="border-blue-200/50 dark:border-blue-800/50"
       >
         <p className="text-gray-800 leading-relaxed text-lg">
           {analysis.summary}
@@ -122,8 +122,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Meaning & Essence"
         emoji="✨"
-        bgColor="bg-gradient-to-br from-green-50/50 dark:from-green-900/20"
-        borderColor="border-green-200 dark:border-green-800"
+        bgColor="bg-gradient-to-br from-green-50/10 dark:from-green-900/10"
+        borderColor="border-green-200/50 dark:border-green-800/50"
       >
         <p className="text-gray-800 leading-relaxed text-lg italic">
           {analysis.meaning}
@@ -135,8 +135,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
         <ResultCard
           title="English Translation"
           emoji="🌍"
-          bgColor="bg-gradient-to-br from-purple-50/50 dark:from-purple-900/20"
-          borderColor="border-purple-200 dark:border-purple-800"
+          bgColor="bg-gradient-to-br from-purple-50/10 dark:from-purple-900/10"
+          borderColor="border-purple-200/50 dark:border-purple-800/50"
         >
           <p className="text-gray-800 leading-relaxed text-lg italic">
             "{analysis.englishTranslation}"
@@ -148,14 +148,14 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Poetic Devices"
         emoji="🎨"
-        bgColor="bg-gradient-to-br from-yellow-50/50 dark:from-yellow-900/20"
-        borderColor="border-yellow-200 dark:border-yellow-800"
+        bgColor="bg-gradient-to-br from-yellow-50/10 dark:from-yellow-900/10"
+        borderColor="border-yellow-200/50 dark:border-yellow-800/50"
       >
         <div className="flex flex-wrap gap-3">
           {analysis.poeticDevices.map((device, index) => (
             <span
               key={index}
-              className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-yellow-200 to-yellow-300 text-yellow-900 font-semibold text-sm hover-lift animate-slideUp"
+              className="inline-block px-4 py-2 rounded-full bg-gradient-to-r from-yellow-200/60 to-yellow-300/60 text-yellow-900 font-semibold text-sm hover-lift animate-slideUp"
               style={{
                 animation: `slideUp 0.6s ease-out ${0.05 * index}s both`,
               }}
@@ -170,8 +170,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Themes Explored"
         emoji="🔮"
-        bgColor="bg-gradient-to-br from-red-50/50 dark:from-red-900/20"
-        borderColor="border-red-200 dark:border-red-800"
+        bgColor="bg-gradient-to-br from-red-50/10 dark:from-red-900/10"
+        borderColor="border-red-200/50 dark:border-red-800/50"
       >
         <ul className="space-y-3">
           {analysis.themes.map((theme, index) => (
@@ -195,8 +195,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Emotional Resonance"
         emoji="❤️"
-        bgColor="bg-gradient-to-br from-pink-50/50 dark:from-pink-900/20"
-        borderColor="border-pink-200 dark:border-pink-800"
+        bgColor="bg-gradient-to-br from-pink-50/10 dark:from-pink-900/10"
+        borderColor="border-pink-200/50 dark:border-pink-800/50"
       >
         <p className="text-gray-800 text-lg leading-relaxed">
           {analysis.emotionalTone}
@@ -207,8 +207,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Historical & Cultural Context"
         emoji="🕰️"
-        bgColor="bg-gradient-to-br from-indigo-50/50 dark:from-indigo-900/20"
-        borderColor="border-indigo-200 dark:border-indigo-800"
+        bgColor="bg-gradient-to-br from-indigo-50/10 dark:from-indigo-900/10"
+        borderColor="border-indigo-200/50 dark:border-indigo-800/50"
       >
         <p className="text-gray-800 text-lg leading-relaxed">
           {analysis.historicalContext}
@@ -219,8 +219,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Word-by-Word Decoding"
         emoji="📚"
-        bgColor="bg-gradient-to-br from-cyan-50/50 dark:from-cyan-900/20"
-        borderColor="border-cyan-200 dark:border-cyan-800"
+        bgColor="bg-gradient-to-br from-cyan-50/10 dark:from-cyan-900/10"
+        borderColor="border-cyan-200/50 dark:border-cyan-800/50"
         isExpandable={true}
         sectionId="wordAnalysis"
       >
@@ -228,7 +228,7 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
           {Object.entries(analysis.wordAnalysis).map(([word, meaning], index) => (
             <div
               key={index}
-              className="p-4 rounded-xl bg-white/40 border border-cyan-200 hover-lift animate-slideUp transition-all duration-300"
+              className="p-4 rounded-xl bg-white/20 border border-cyan-200/50 hover-lift animate-slideUp transition-all duration-300"
               style={{
                 animation: `slideUp 0.6s ease-out ${0.05 * index}s both`,
               }}
@@ -248,8 +248,8 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       <ResultCard
         title="Deep Literary Interpretation"
         emoji="🌟"
-        bgColor="bg-gradient-to-br from-orange-50/50 dark:from-orange-900/20"
-        borderColor="border-orange-200 dark:border-orange-800"
+        bgColor="bg-gradient-to-br from-orange-50/10 dark:from-orange-900/10"
+        borderColor="border-orange-200/50 dark:border-orange-800/50"
       >
         <p className="text-gray-800 text-lg leading-relaxed">
           {analysis.interpretation}
@@ -257,7 +257,7 @@ export default function AnalysisResult({ analysis }: AnalysisResultProps) {
       </ResultCard>
 
       {/* Footer Message */}
-      <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-300/50 text-center animate-slideUp">
+      <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-purple-500/5 to-pink-500/5 border border-purple-300/30 text-center animate-slideUp">
         <p className="text-gray-800 text-sm italic">
           ✨ "In poetry, words dance with meaning." ✨
         </p>

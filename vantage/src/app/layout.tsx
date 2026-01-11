@@ -13,9 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Urdu Literary Companion - AI Poetry & Prose Analysis",
+  title: "lafz - AI Poetry & Prose Analysis",
   description: "Decode the beauty of Urdu poetry and prose with AI-powered analysis. Explore meanings, poetic devices, themes, and cultural contexts.",
-  keywords: "Urdu poetry, prose analysis, literary companion, AI analysis, ghazals",
+  keywords: "Urdu poetry, prose analysis, lafz, AI analysis, ghazals, translations",
 };
 
 export default function RootLayout({
@@ -24,13 +24,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#0066cc" />
+        <meta name="theme-color" content="#1e293b" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-br from-slate-50 via-purple-50 to-blue-50`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-slate-900`}
       >
         {children}
       </body>
