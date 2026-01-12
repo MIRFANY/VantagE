@@ -23,8 +23,8 @@ export const metadata: Metadata = {
     title: "Lafz",
   },
   icons: {
-    icon: "/icon-192.png",
-    apple: "/icon-192.png",
+    icon: "/icon.svg",
+    apple: "/icon.svg",
   },
 };
 
