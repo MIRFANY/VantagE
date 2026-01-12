@@ -16,6 +16,16 @@ export const metadata: Metadata = {
   title: "lafz - AI Poetry & Prose Analysis",
   description: "Decode the beauty of Urdu poetry and prose with AI-powered analysis. Explore meanings, poetic devices, themes, and cultural contexts.",
   keywords: "Urdu poetry, prose analysis, lafz, AI analysis, ghazals, translations",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Lafz",
+  },
+  icons: {
+    icon: "/icon-192.png",
+    apple: "/icon-192.png",
+  },
 };
 
 export default function RootLayout({

@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
+// @ts-ignore
+import withPWA from "next-pwa";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  turbopack: {},
 };
 
-export default nextConfig;
+export default ghfghfgfwithPWA({
+  dest: "public",
+  register: true,
+  skipWaiting: true,
+})(nextConfig);
