@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
   turbopack: {},
 };
 
-export default ghfghfgfwithPWA({
+export default withPWA({
   dest: "public",
   register: true,
   skipWaiting: true,

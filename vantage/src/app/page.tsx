@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import TextInput from '@/components/TextInput';
 import TranslationDisplay from '@/components/TranslationDisplay';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Analysis {
   summary: string;
@@ -24,10 +26,19 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
   const [darkMode, setDarkMode] = useState(true);
   const [languageMode, setLanguageMode] = useState<'urdu' | 'english'>('urdu');
+  const { user, logout } = useAuth();
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    // Redirect to login if not authenticated
+    if (mounted && !user) {
+      router.push('/auth/login');
+    }
+  }, [mounted, user, router]);
 
   const handleAnalyze = async (text: string) => {
     setInputText(text);
@@ -58,8 +69,35 @@ export default function Home() {
       setIsLoading(false);
     }
   };
+  const saveAnalysis = async (analysis: Analysis) => {
+  try {
+    const response = await fetch('/api/analyses', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        text: inputText,
+        summary: analysis.summary,
+        meaning: analysis.meaning,
+        poeticDevices: analysis.poeticDevices,
+        themes: analysis.themes,
+        emotionalTone: analysis.emotionalTone,
+        historicalContext: analysis.historicalContext,
+        wordAnalysis: analysis.wordAnalysis,
+        interpretation: analysis.interpretation,
+        englishTranslation: analysis.englishTranslation,
+      })
+    });
+    if (!response.ok) throw new Error('Failed to save');
+    alert('Analysis saved to database!');
+  } catch (err) {
+    console.error('Save error:', err);
+    alert('Failed to save analysis');
+  }
+};
 
-  if (!mounted) {
+
+
+  if (!mounted || !user) {
     return null;
   }
 
@@ -78,10 +116,40 @@ export default function Home() {
 
       <div className="relative z-10">
         {/* Header - Transparent */}
-        <div className="py-3 sm:py-4 px-4 sm:px-6">
+        <div className="py-3 sm:py-4 px-4 sm:px-6 flex justify-between items-center">
           <h1 className={`text-xl sm:text-2xl md:text-3xl font-bold ${darkMode ? 'text-amber-400' : 'text-amber-600'}`}>
             لفظ
           </h1>
+          <div className="flex items-center gap-3">
+            <div className="text-right hidden sm:block">
+              <p className={`text-sm font-semibold ${darkMode ? 'text-amber-300' : 'text-amber-700'}`}>
+                {user?.name}
+              </p>
+              <p className={`text-xs ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                {user?.email}
+              </p>
+            </div>
+            <button
+              onClick={logout}
+              className={`px-3 py-2 rounded-lg font-semibold transition text-sm ${
+                darkMode
+                  ? 'bg-red-600 hover:bg-red-700 text-white'
+                  : 'bg-red-500 hover:bg-red-600 text-white'
+              }`}
+            >
+              Logout
+            </button>
+            <a
+              href="/history"
+              className={`px-4 py-2 rounded-lg font-semibold transition ${
+                darkMode
+                  ? 'bg-amber-600 hover:bg-amber-700 text-white'
+                  : 'bg-amber-500 hover:bg-amber-600 text-white'
+              }`}
+            >
+              📚 History
+            </a>
+          </div>
         </div>
 
         {/* Floating Dark Mode Toggle - Bottom Right - Mobile Optimized */}
@@ -137,6 +205,16 @@ export default function Home() {
             )}
           </>
         ) : (
+          <>
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mb-6">
+              <button
+                onClick={() => saveAnalysis(analysis)}
+                className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                 Save 
+              </button>
+            
+            </div>
           <TranslationDisplay
             inputText={inputText}
             analysis={analysis}
@@ -149,6 +227,7 @@ export default function Home() {
               setError(null);
             }}
           />
+          </>
         )}
 
         {/* Footer */}
