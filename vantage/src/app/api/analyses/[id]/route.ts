@@ -4,12 +4,12 @@ import { Analysis } from '@/lib/models/Analysis';
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = await Promise.resolve(params);
+    const { id } = await context.params;
     const body = await request.json();
 
     const analysis = await Analysis.findByIdAndUpdate(id, body, { new: true });
@@ -33,12 +33,12 @@ export async function PUT(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     await connectDB();
 
-    const { id } = await Promise.resolve(params);
+    const { id } = await context.params;
 
     const analysis = await Analysis.findByIdAndDelete(id);
 
